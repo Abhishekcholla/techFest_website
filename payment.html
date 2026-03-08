@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment - TechFest 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Buy Your Token</h2>
+  <button id="payBtn">Proceed to Payment</button>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    document.getElementById("payBtn").onclick = function() {
+      var options = {
+        "key": "YOUR_RAZORPAY_KEY",
+        "amount": 50000, // in paise (₹500)
+        "currency": "INR",
+        "name": "TechFest 2026",
+        "description": "Event Token",
+        "handler": function (response){
+          alert("Payment Successful! ID: " + response.razorpay_payment_id);
+        }
+      };
+      var rzp = new Razorpay(options);
+      rzp.open();
+    }
+  </script>
+</body>
+</html>
